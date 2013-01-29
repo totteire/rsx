@@ -1,0 +1,70 @@
+<html>
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<title>Modélisation d'un protocole de communication</title>
+	<link media="screen, projection, print" href="style.css" type="text/css" rel="stylesheet"/>
+	<link type="text/css" href="./js/jquery-ui-1.8.18.custom/css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js"></script>
+	<script type="text/javascript" src="js/mainJs.js"></script>
+	<script>
+	</script>
+</head>
+<body>
+    <div id="page">
+	<table id="mainTable" >
+	    <tr>
+            <td id="inputBox1">
+                <img src="img/ordiG.png" />
+                <div id="quest1">
+                    Question1
+                </div>
+                <input id="nom_fichier" class="info dial1el dialEl"/>
+                <input id="taille_fichier" class="info dial1el dialEl"/>
+                <input id="lg_trame" class="info dial1el dialEl"/>
+                <input id="taille_fenetre" class="info dial1el dialEl"/>
+                <br>
+                <select name="select1" id="select1" class="dial1el dialEl">
+                    <option value="option"></option>
+                </select>
+            </td>
+            <td></td>
+            <td id="inputBox2">
+                <img src="img/ordiD.png" />
+                <div id="quest2" class="dialEl">
+                    Question2
+                </div>
+                <select name="select2" id="select2" class="dialEl dial2el">
+                    <option value="option"></option>
+                </select>
+            </td>
+	    </tr>
+	    <tr>
+            <td class='verticalLink'>
+                <span id='trame1Name' class='trameName'>T-CONNECT.demande</span>
+                <div class='trame' id="trame1"></div>
+            </td>
+            <td></td>
+            <td class='verticalLink'>
+                <span id='trame3Name' class='trameName'>T-CONNECT.demande</span>
+                <div class='trame' id="trame3"></div>
+            </td>
+	    </tr>
+	    <tr>
+            <td>FOURNISSEUR SERVICE1</td>
+            <td class='horizontalLink'>
+                <span id='trame2Name' class='trameName'>T-CONNECT.demande</span>
+                <div class='trame' id="trame2"></div>
+            </td>
+            <td>FOURNISSEUR SERVICE2</td>
+	    </tr>
+	    <tr>
+            <td class="rel"><p id="bubble1" class="bubble"></p></td>
+            <td><textarea id="console" readonly=True></textarea></td>
+            <td class="rel"><p id="bubble2" class="bubble"></p></td>
+	    </tr>
+	</table>
+    </div>
+</body>
+</html>
+

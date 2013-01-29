@@ -1,0 +1,110 @@
+body{
+    font: 15px/22.5px "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+    font-size:12px;
+    background: url('img/bg.jpg') repeat;
+    color: white;
+}
+#page{
+    width: 750px;
+    margin: auto;
+    padding-top: 50px;
+}
+table#mainTable{
+    margin: auto;
+}
+tr{
+    height: 100px;
+}
+td{
+    width: 33%;
+    text-align: center;
+}
+td.verticalLink{
+    background: url(http://i.stack.imgur.com/nomLz.gif) repeat-y center top;
+    position: relative;
+}
+td.horizontalLink{
+    background: url(http://i.stack.imgur.com/nomLz.gif) repeat-x left center;
+    position: relative;
+}
+.trame{
+    background-image: url('img/circle.png');
+    position: absolute;
+    top: 0px;
+    left: 60px;
+    width: 25px;
+    height: 25px;
+    display: none;
+}
+#console{
+    overflow-y: scroll;
+    width: 100%;
+    height: 200px;
+    font-weight: bold;
+    background-color: #777;
+}
+.trameName{
+    position: absolute;
+    color: grey;
+    width: 200px;
+}
+#trame1Name{ left: -100px; }
+#trame2Name{ top: 0px; left: 0px; }
+#trame3Name{ right: -100px; }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: #777;
+    font-family: "klavika-web", "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif !important;
+}
+
+.trameName,.dialEl{ display: none; }
+td.rel{
+    position: relative;
+}
+
+.bubble 
+{
+    top: 0px;
+    position: absolute;
+    width: 110px;
+    height: 20px;
+    padding: 0px;
+    background: transparent;
+    border: #FFFFFF solid 3px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.bubble:after 
+{
+    content: "";
+    position: absolute;
+    top: -27px;
+    left: 72px;
+    border-style: solid;
+    border-width: 0 11px 27px;
+    border-color: white transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+}
+
+.bubble:before 
+{
+    content: "";
+    position: absolute;
+    top: -32px;
+    left: 70px;
+    border-style: solid;
+    border-width: 0 13px 29px;
+    border-color: white transparent;
+    display: block;
+    width: 0;
+    z-index: 0;
+}
+#bubble2:after{ left: 12px; }
+#bubble2:before{ left: 12px; }
+#bubble2{ right: 0px; }
+
