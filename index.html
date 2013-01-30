@@ -34,8 +34,11 @@
                 <div id="quest2" class="dialEl">
                     Question2
                 </div>
-                <select name="select2" id="select2" class="dialEl dial2el">
-                    <option value="option"></option>
+                <select name="destState" id="destState" class="dialEl dial3el">
+                    <option value=""></option>
+                    <option value="1">innaccessible</option>
+                    <option value="2">accessible mais refus</option>
+                    <option value="2">accessible et accèpte</option>
                 </select>
             </td>
 	    </tr>
@@ -60,9 +63,12 @@
 	    </tr>
 	    <tr>
             <td class="rel"><p id="bubble1" class="bubble"></p></td>
-            <td><textarea id="console" readonly=True></textarea></td>
+            <td></td>
             <td class="rel"><p id="bubble2" class="bubble"></p></td>
 	    </tr>
+        <tr>
+            <td colspan=3><textarea id="console" readonly=True></textarea></td>
+        </tr>
 	</table>
     </div>
 </body>
