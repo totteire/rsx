@@ -1,20 +1,14 @@
-function dialog(nodeIdQuest, nodeIdSelct){
-    this.idQuest = nodeIdQuest;
-    this.nodeQuest = $('#' + this.idQuest);
-    /*this.idSelect = nodeIdSelct;*/
-    /*this.nodeSelect = $('#' + this.idSelect);*/
-    this.rep = 0;
-    /*this.quest = {}*/
+function dialog(nodeIdCell){
+    this.idDial = nodeIdCell;
+    this.nodeDial = $('#' + this.idDial);
+    this.nodeQuest = this.nodeDial.children(".quest");
     this.updateQuest = function(text){
         this.nodeQuest.html(text);
+        this.nodeQuest.show();
     }
-    /*this.setChoices = function(question){*/
-    /*options = "";*/
-    /*for(i = 1; i <= question.__defineGetter__.length; i++){*/
-    /*options += "<option value='" + i + "' >" + question[i] + "</option>";*/
-    /*}*/
-    /*this.nodeSelect.html(options);*/
-    /*}*/
+    this.clearQuest = function(){
+        $("#"+this.idDial+" .dialEl").hide();
+    }
 }
 
 function FournServ(fourId){
@@ -34,15 +28,6 @@ function Trame(trameId){
     this.changeName = function(name){
         $(".trameName").fadeOut('fast');
         this.nodeName.fadeIn('fast').text(name);
-        return this;
-    }
-    this.wait = function(func){
-        var wait = setInterval(function(func) {
-            if($(".trame:animated").length == 0) {
-                clearInterval(wait);
-                func;
-            }
-        }, 200);
         return this;
     }
     this.setPos = function(pos){

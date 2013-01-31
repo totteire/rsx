@@ -52,16 +52,17 @@ window.animL = function(name1, name2, name3, params){
 
 window.Connection = function(){
     var INACCESSIBLE = 0;
+    dial1.updateQuest("Entrez la taille de la fenêtre");
     $("#taille_fenetre").show();
 
     $("#taille_fenetre").change(function(){
         cnx();
-        $("#taille_fenetre").hide();
+        dial1.clearQuest();
     });
     $("#destState").change(function(){
         rep = $("#destState").val();
         if(rep != 0){
-            $("#destState").hide();
+            dial2.clearQuest();
             if(rep == 1)
                 inaccessible();
             else if(rep == 2)
@@ -74,6 +75,7 @@ window.Connection = function(){
     cnx = function(){
         animR("T-CONNECT.demande", "CNX", "T-CONNECT.indication", [NOM_FICH, TAILLE_FEN, TAILLE_TRAME]);
         setTimeout(function(){
+            dial2.updateQuest("La station destinatrice est:");
             $("#destState").fadeIn();
         }, 6000)
     }

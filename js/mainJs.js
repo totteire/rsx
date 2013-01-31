@@ -7,8 +7,8 @@ $(document).ready(function(){
     window.TAILLE_TRAME = 2;
 
 
-    window.dial1 = new dialog("quest1", "select1");
-    window.dial2 = new dialog("quest2", "select2");
+    window.dial1 = new dialog("inputBox1");
+    window.dial2 = new dialog("inputBox2");
     TrameV.prototype = new Trame();
     window.trame1 = new TrameV("trame1", 'up');
     TrameH.prototype = new Trame();
