@@ -3,8 +3,9 @@ function dialog(nodeIdCell){
     this.nodeDial = $('#' + this.idDial);
     this.nodeQuest = this.nodeDial.children(".quest");
     this.updateQuest = function(text){
-        this.nodeQuest.html(text);
-        this.nodeQuest.show();
+        _this = this;
+        this.nodeQuest.fadeOut("slow", function(){ _this.nodeQuest.html(text); });
+        this.nodeQuest.fadeIn("slow");
     }
     this.clearQuest = function(){
         $("#"+this.idDial+" .dialEl").hide();

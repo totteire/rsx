@@ -1,3 +1,11 @@
+function is_int(value){
+    if((parseFloat(value) == parseInt(value)) && !isNaN(value)){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 paramsToStr = function(params){
     var strParam = "(";
     for(var param in params)
@@ -52,13 +60,44 @@ window.animL = function(name1, name2, name3, params){
 
 window.Connection = function(){
     var INACCESSIBLE = 0;
-    dial1.updateQuest("Entrez la taille de la fenêtre");
-    $("#taille_fenetre").show();
 
-    $("#taille_fenetre").change(function(){
-        cnx();
-        dial1.clearQuest();
+    dial1.updateQuest("Entrez le nom du fichier à transferer ...");
+    $("#nom_fichier").show();
+    $("#nom_fichier").change(function(){
+        NOM_FICH = $(this).val();
+        cons.add("Nom du fichier: " + NOM_FICH);
+        $(this).hide();
+        dial1.updateQuest("Entrez la taille du fichier en octets ...");
+        $("#taille_fichier").show();
     });
+    $("#taille_fichier").change(function(){
+        TAILLE_FICH = $(this).val();
+        if(is_int(TAILLE_FICH)){
+            cons.add("Taille du fichier: " + TAILLE_FICH + " octets");
+            $(this).hide();
+            dial1.updateQuest("Entrez la taille de la trame ...");
+            $("#lg_trame").show();
+        }
+    });
+    $("#lg_trame").change(function(){
+        TAILLE_TRAME = $(this).val();
+        if(is_int(TAILLE_TRAME)){
+            cons.add("Taille des trames: " + TAILLE_TRAME + " octets");
+            $(this).hide();
+            dial1.updateQuest("Entrez la taille de la fenêtre");
+            $("#taille_fenetre").show();
+        }
+    });
+    $("#taille_fenetre").change(function(){
+        TAILLE_FEN = $(this).val();
+        if(is_int(TAILLE_FEN)){
+            cons.add("Taille de la fenêtre: " + TAILLE_FEN);
+            $("#taille_fenetre").show();
+            cnx();
+            dial1.clearQuest();
+        }
+    });
+
     $("#destState").change(function(){
         rep = $("#destState").val();
         if(rep != 0){
