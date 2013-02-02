@@ -19,9 +19,17 @@ $(document).ready(function(){
     window.four1 = new FournServ('bubble1');
     window.four2 = new FournServ('bubble2');
 
+    four1.changeState("Repos");
+    four2.changeState("Repos");
+
+    $('#btnStart').click(function(){
+        cons.clear();
+        $('.dialEl').val('');
+        Connection();
+    });
     window.endAll = function(){
         alert("End All");
+        $('#btnStart').fadeIn();
+        $('#title').text('');
     }
-
-    Connection();
 });

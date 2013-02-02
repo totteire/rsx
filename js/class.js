@@ -103,6 +103,9 @@ function TrameV(trameId, start){
 function output(nodeId){
     this.id = nodeId;
     this.dom = $('#'+nodeId);
+    this.clear = function(){
+        this.dom.text("");
+    }
     this.add = function(log){
         this.dom.append(log+"\n");
         return this;

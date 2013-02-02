@@ -20,12 +20,16 @@ td{
     text-align: center;
 }
 td.verticalLink{
-    background: url(http://i.stack.imgur.com/nomLz.gif) repeat-y center top;
+    /*background: url(http://i.stack.imgur.com/nomLz.gif) repeat-y center
+     * top;*/
     position: relative;
 }
 td.horizontalLink{
     background: url(http://i.stack.imgur.com/nomLz.gif) repeat-x left center;
     position: relative;
+}
+td#title{
+    width: 50px important!;
 }
 .trame{
     background-image: url('img/circle.png');

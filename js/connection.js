@@ -61,6 +61,8 @@ window.animL = function(name1, name2, name3, params){
 window.Connection = function(){
     var INACCESSIBLE = 0;
 
+    $("#btnStart").fadeOut();
+    $("#title").text("Phase CONNEXION");
     dial1.updateQuest("Entrez le nom du fichier à transferer ...");
     $("#nom_fichier").show();
     $("#nom_fichier").change(function(){
@@ -99,6 +101,7 @@ window.Connection = function(){
     });
 
     cnx = function(){
+        four1.changeState("Attente acceptation");
         animR("T-CONNECT.demande", "CNX", "T-CONNECT.indication", [NOM_FICH, TAILLE_FEN, TAILLE_TRAME]);
         setTimeout(function(){
             dial2.updateQuest("La station destinatrice est:");
@@ -157,12 +160,14 @@ window.Connection = function(){
         $("#destConfParams").val(0);
     })
     keepParams = function(){
+        four2.changeState("Réception");
         animL("T-CONNECT.confirmation", "REP", "T-CONNECT.confirmation");
         setTimeout(function(){
             Transfert();
         }, ANIMT * 6);
     }
     changeParams = function(){
+        four2.changeState("Attente d'acceptation");
         dial2.updateQuest("Nouvelle taille des trames: ");
         $("#confLgTrame").show();
     }
