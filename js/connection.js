@@ -23,16 +23,16 @@ window.animR = function(name1, name2, name3, params){
         params = paramsToStr(params);
 
     trame1.anim(1).changeName(name1);
-    cons.add("Envoie: " + name1 + params);
+    cons.add("Primitive: " + name1 + params);
     setTimeout(function(){
         trame2.anim(1).changeName(name2);
-        cons.add("Envoie: " + name2 + params);
+        cons.add("Element de protocole: " + name2 + params);
         setTimeout(function(){
             trame3.anim(1).changeName(name3);
-            cons.add("Envoie: " + name3 + params);
-            setTimeout(function(){
-                trame3.changeName("");
-            },2000);
+            cons.add("Primitive: " + name3 + params);
+            /*setTimeout(function(){*/
+            /*trame3.changeName("");*/
+            /*},2000);*/
         },2000);
     },2000);
 }
@@ -51,9 +51,9 @@ window.animL = function(name1, name2, name3, params){
         setTimeout(function(){
             trame1.anim(-1).changeName(name3);
             cons.add("Primitive: " + name3 + params);
-            setTimeout(function(){
-                trame1.changeName("");
-            },2000);
+            /*setTimeout(function(){*/
+            /*trame1.changeName("");*/
+            /*},2000);*/
         },2000);
     },2000);
 }
@@ -98,12 +98,18 @@ window.Connection = function(){
         }
     });
 
+    cnx = function(){
+        animR("T-CONNECT.demande", "CNX", "T-CONNECT.indication", [NOM_FICH, TAILLE_FEN, TAILLE_TRAME]);
+        setTimeout(function(){
+            dial2.updateQuest("La station destinatrice est:");
+            $("#destState").fadeIn();
+        }, ANIMT * 6)
+    }
     $("#destState").change(function(){
         rep = $("#destState").val();
         if(rep != 0){
             dial2.clearQuest();
-            if(rep == 1)
-                inaccessible();
+            if(rep == 1) inaccessible();
             else if(rep == 2)
                 accessibleNonOk();
             else if(rep == 3)
@@ -111,28 +117,73 @@ window.Connection = function(){
         }
         $("#destState").val(0);
     })
-    cnx = function(){
-        animR("T-CONNECT.demande", "CNX", "T-CONNECT.indication", [NOM_FICH, TAILLE_FEN, TAILLE_TRAME]);
-        setTimeout(function(){
-            dial2.updateQuest("La station destinatrice est:");
-            $("#destState").fadeIn();
-        }, 6000)
-    }
+
     inaccessible = function(){
+        cons.add("La station destinatrice est inaccessible!");
         INACCESSIBLE ++;
         if(INACCESSIBLE > 3)
-            cnxAbandon();
+            cnxAbandonIndication();
         else
             cnx();
     }
-    cnxAbandon = function(){
-        
+    cnxAbandonIndication = function(){
+        trame1.anim(-1).changeName("T-ABANDON.indication()");
+        cons.add("Abandon de la connexion!");
+        cons.add("Primitive: T-ABANDON.indication()");
+        setTimeout(function(){
+            endAll();
+        }, ANIMT);
     }
     accessibleNonOk = function(){
-        
+        animL("T-CONNECT.confirmation", "REP", "T-CONNECT.confirmation", ['0','0']);
+        setTimeout(function(){
+            endAll();
+        }, ANIMT * 6);
     }
     accessibleOk = function(){
-        
+        $("#destConfParams").fadeIn();
+        dial2.updateQuest("Voulez vous garder les paramètres de QoS?");
+        cons.add("La station destinatrice est accessible!");
     }
-
+    $("#destConfParams").change(function(){
+        rep = $("#destConfParams").val();
+        if(rep != 0){
+            dial2.clearQuest();
+            if(rep == 1)
+                keepParams();
+            else if(rep == 2)
+                changeParams();
+        }
+        $("#destConfParams").val(0);
+    })
+    keepParams = function(){
+        animL("T-CONNECT.confirmation", "REP", "T-CONNECT.confirmation");
+        setTimeout(function(){
+            Transfert();
+        }, ANIMT * 6);
+    }
+    changeParams = function(){
+        dial2.updateQuest("Nouvelle taille des trames: ");
+        $("#confLgTrame").show();
+    }
+    $("#confLgTrame").change(function(){
+        TAILLE_TRAME = $(this).val();
+        if(is_int(TAILLE_TRAME)){
+            cons.add("Nouvelle taille des trames: " + TAILLE_TRAME + " octets");
+            $(this).hide();
+            dial2.updateQuest("Nouvelle taille de la fenêtre");
+            $("#confTailleFen").show();
+        }
+    });
+    $("#confTailleFen").change(function(){
+        TAILLE_TRAME = $(this).val();
+        if(is_int(TAILLE_TRAME)){
+            cons.add("Nouvelle taille de la fenêtre: " + TAILLE_TRAME + " octets");
+            dial2.clearQuest();
+            animL("T-CONNECT.confirmation", "REP", "T-CONNECT.confirmation", [TAILLE_FEN, TAILLE_TRAME]);
+            setTimeout(function(){
+                Transfert();
+            }, ANIMT * 6);
+        }
+    });
 }

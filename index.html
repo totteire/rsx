@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js"></script>
 
 	<script type="text/javascript" src="js/class.js"></script>
+	<script type="text/javascript" src="js/transfert.js"></script>
 	<script type="text/javascript" src="js/connection.js"></script>
 	<script type="text/javascript" src="js/mainJs.js"></script>
 	<script>
@@ -38,8 +39,15 @@
                     <option value=""></option>
                     <option value="1">innaccessible</option>
                     <option value="2">accessible mais refuse</option>
-                    <option value="2">accessible et accèpte</option>
+                    <option value="3">accessible et accèpte</option>
                 </select>
+                <select id="destConfParams" class="dialEl">
+                    <option value=""></option>
+                    <option value="1">Oui</option>
+                    <option value="2">Non</option>
+                </select>
+                <input id="confLgTrame" class="dialEl"/>
+                <input id="confTailleFen" class="dialEl"/>
             </td>
 	    </tr>
 	    <tr>

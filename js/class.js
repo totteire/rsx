@@ -27,8 +27,12 @@ function Trame(trameId){
     this.nodeContainer = this.nodeTrame.parent();
     this.nodeName = this.nodeContainer.children(".trameName");
     this.changeName = function(name){
-        $(".trameName").fadeOut('fast');
         this.nodeName.fadeIn('fast').text(name);
+        _this = this.nodeName;
+        setTimeout(function(){
+            $(_this).hide();
+        }, ANIMT + ANIMT * .25);
+        console.log(ANIMT - ANIMT * 0.0);
         return this;
     }
     this.setPos = function(pos){
@@ -47,7 +51,7 @@ function Trame(trameId){
             this.nodeTrame.animate({
                 left: '+='+diffx,
                 top: '+='+diffy,
-            }, 1000, function(){
+            }, ANIMT, function(){
                 _this.nodeTrame.fadeOut();
                 /*_this.setPos(_this.pos2);*/
             });
@@ -58,7 +62,7 @@ function Trame(trameId){
             this.nodeTrame.animate({
                 left: '-='+diffx,
                 top: '-='+diffy,
-            }, 1000, function(){
+            }, ANIMT, function(){
                 _this.nodeTrame.fadeOut();
                 /*_this.setPos(_this.pos1);*/
             });

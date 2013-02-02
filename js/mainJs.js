@@ -1,6 +1,6 @@
 $(document).ready(function(){
     /*temps du retardataire*/
-    window.ANIMT = 2500;
+    window.ANIMT = 1000;
     window.TAILLE_FEN = 4;
     window.TAILLE_FICH = 20;
     window.NOM_FICH = "fichier";
@@ -19,6 +19,9 @@ $(document).ready(function(){
     window.four1 = new FournServ('bubble1');
     window.four2 = new FournServ('bubble2');
 
+    window.endAll = function(){
+        alert("End All");
+    }
 
     Connection();
 });
