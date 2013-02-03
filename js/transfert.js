@@ -2,6 +2,7 @@ window.Transfert = function(){
     NB_TRAME = Math.ceil(TAILLE_FICH / TAILLE_TRAME);
     $("#title").text("Phase TRANSFERT");
     four1.changeState("Transfert");
+    four2.changeState("Transfert");
 
     var PDU_NUM = 0;
     var NB_CRC = 0;

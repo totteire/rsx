@@ -66,7 +66,7 @@ window.Connection = function(){
     dial1.updateQuest("Entrez le nom du fichier à transferer ...");
     $("#nom_fichier").show();
     $("#nom_fichier").change(function(){
-        NOM_FICH = parseInt($(this).val());
+        NOM_FICH = $(this).val();
         cons.add("Nom du fichier: " + NOM_FICH);
         $(this).hide();
         dial1.updateQuest("Entrez la taille du fichier en octets ...");

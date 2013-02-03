@@ -29,10 +29,9 @@ $(document).ready(function(){
         Connection();
     });
     window.endAll = function(){
-        $('#btnStart').fadeIn();
-        $('#title').text('');
+        $('#title').text('Merci de recharger la page pour recommencer la simulation!');
         trame2.changeName("");
+        four1.changeState("Repos");
+        four2.changeState("Repos");
     }
-    /*Transfert();*/
-    Deconnexion();
 });
