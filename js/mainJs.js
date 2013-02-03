@@ -29,9 +29,10 @@ $(document).ready(function(){
         Connection();
     });
     window.endAll = function(){
-        alert("End All");
         $('#btnStart').fadeIn();
         $('#title').text('');
+        trame2.changeName("");
     }
-    Transfert();
+    /*Transfert();*/
+    Deconnexion();
 });
