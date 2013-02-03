@@ -5,6 +5,7 @@ $(document).ready(function(){
     window.TAILLE_FICH = 20;
     window.NOM_FICH = "fichier";
     window.TAILLE_TRAME = 2;
+    window.NB_TRAME = 10;
 
 
     window.dial1 = new dialog("inputBox1");
@@ -32,4 +33,5 @@ $(document).ready(function(){
         $('#btnStart').fadeIn();
         $('#title').text('');
     }
+    Transfert();
 });

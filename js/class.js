@@ -32,7 +32,6 @@ function Trame(trameId){
         setTimeout(function(){
             $(_this).hide();
         }, ANIMT + ANIMT * .25);
-        console.log(ANIMT - ANIMT * 0.0);
         return this;
     }
     this.setPos = function(pos){

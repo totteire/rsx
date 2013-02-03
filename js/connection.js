@@ -66,14 +66,14 @@ window.Connection = function(){
     dial1.updateQuest("Entrez le nom du fichier à transferer ...");
     $("#nom_fichier").show();
     $("#nom_fichier").change(function(){
-        NOM_FICH = $(this).val();
+        NOM_FICH = parseInt($(this).val());
         cons.add("Nom du fichier: " + NOM_FICH);
         $(this).hide();
         dial1.updateQuest("Entrez la taille du fichier en octets ...");
         $("#taille_fichier").show();
     });
     $("#taille_fichier").change(function(){
-        TAILLE_FICH = $(this).val();
+        TAILLE_FICH = parseInt($(this).val());
         if(is_int(TAILLE_FICH)){
             cons.add("Taille du fichier: " + TAILLE_FICH + " octets");
             $(this).hide();
@@ -82,7 +82,7 @@ window.Connection = function(){
         }
     });
     $("#lg_trame").change(function(){
-        TAILLE_TRAME = $(this).val();
+        TAILLE_TRAME = parseInt($(this).val());
         if(is_int(TAILLE_TRAME)){
             cons.add("Taille des trames: " + TAILLE_TRAME + " octets");
             $(this).hide();
@@ -91,7 +91,7 @@ window.Connection = function(){
         }
     });
     $("#taille_fenetre").change(function(){
-        TAILLE_FEN = $(this).val();
+        TAILLE_FEN = parseInt($(this).val());
         if(is_int(TAILLE_FEN)){
             cons.add("Taille de la fenêtre: " + TAILLE_FEN);
             $("#taille_fenetre").show();
@@ -172,7 +172,7 @@ window.Connection = function(){
         $("#confLgTrame").show();
     }
     $("#confLgTrame").change(function(){
-        TAILLE_TRAME = $(this).val();
+        TAILLE_TRAME = parseInt($(this).val());
         if(is_int(TAILLE_TRAME)){
             cons.add("Nouvelle taille des trames: " + TAILLE_TRAME + " octets");
             $(this).hide();
@@ -181,14 +181,38 @@ window.Connection = function(){
         }
     });
     $("#confTailleFen").change(function(){
-        TAILLE_TRAME = $(this).val();
+        TAILLE_TRAME = parseInt($(this).val());
         if(is_int(TAILLE_TRAME)){
             cons.add("Nouvelle taille de la fenêtre: " + TAILLE_TRAME + " octets");
             dial2.clearQuest();
             animL("T-CONNECT.confirmation", "REP", "T-CONNECT.confirmation", [TAILLE_FEN, TAILLE_TRAME]);
             setTimeout(function(){
-                Transfert();
+                validateQoS();
             }, ANIMT * 6);
         }
     });
+    validateQoS = function(){
+        dial1.updateQuest("Voulez vous valider les paramètres QoS?");
+        $("#validateQoS").show();
+    }
+    $("#validateQoS").change(function(){
+        rep = $("#validateQoS").val();
+        if(rep != 0){
+            dial1.clearQuest();
+            if(rep == 1)
+                Transfert();
+            else if(rep == 2)
+                cnxAbandon();
+        }
+        $("#destConfParams").val(0);
+    });
+
+    cnxAbandon = function(){
+        four1.changeState("Repos");
+        animR("T-ABANDON.demande", "ABN", "T-ABANDON.indication");
+        setTimeout(function(){
+            four2.changeState("Repos");
+            endAll();
+        }, ANIMT * 6);
+    };
 }
